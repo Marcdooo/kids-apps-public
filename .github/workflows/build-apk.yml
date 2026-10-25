@@ -19,6 +19,15 @@ on:
         description: "Only these app folders (space separated). Empty = every app."
         required: false
         default: ""
+      mode:
+        description: "full = analyze, test and build the APK. check = only analyze and test (about half the minutes, use while fixing code)."
+        required: false
+        default: "full"
+
+# A newer manual run for the same apps replaces an older one that is still running.
+concurrency:
+  group: build-${{ github.event_name }}-${{ inputs.apps || github.sha }}
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -64,6 +73,7 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+          cache: gradle
 
       - uses: subosito/flutter-action@v2
         with:
@@ -113,6 +123,7 @@ jobs:
           fi
 
       - name: Set up release signing (only if the secrets exist)
+        if: inputs.mode != 'check'
         env:
           KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
           KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
@@ -146,6 +157,7 @@ jobs:
           fi
 
       - name: Build APK
+        if: inputs.mode != 'check'
         run: |
           # An app can limit the processor types in build_flags.txt (smaller APK).
           FLAGS=""
@@ -155,10 +167,8 @@ jobs:
             exit 1
           }
 
-      - name: Build app bundle
-        run: flutter build appbundle --release
-
       - name: Check the APK is not debug-signed
+        if: inputs.mode != 'check'
         run: |
           APKSIGNER=$(ls "$ANDROID_HOME"/build-tools/*/apksigner | sort -V | tail -1)
           "$APKSIGNER" verify --print-certs build/app/outputs/flutter-apk/app-release.apk | tee certs.txt
@@ -181,6 +191,7 @@ jobs:
       # release asset (release tag apk-<app>), which has no such quota. The artifact upload
       # is kept but allowed to fail.
       - name: Publish the APK as a release asset
+        if: inputs.mode != 'check'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -188,13 +199,3 @@ jobs:
           TAG="apk-${{ matrix.app }}"
           gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "APK: ${{ matrix.app }}" --notes "Signed release APK built from main." --prerelease
           gh release upload "$TAG" "${{ matrix.app }}.apk" --clobber
-
-      - uses: actions/upload-artifact@v4
-        continue-on-error: true
-        with:
-          name: ${{ matrix.app }}-release
-          retention-days: 3
-          path: |
-            apps/${{ matrix.app }}/build/app/outputs/flutter-apk/app-release.apk
-            apps/${{ matrix.app }}/build/app/outputs/bundle/release/app-release.aab
-          if-no-files-found: error
