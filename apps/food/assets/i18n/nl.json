@@ -1,0 +1,19 @@
+{
+  "app_title": "Eten",
+  "undo": "Ongedaan maken",
+  "clear": "Wissen",
+  "cancel": "Annuleren",
+  "parent_area": "Voor volwassenen",
+  "gate_title": "Alleen voor volwassenen",
+  "gate_prompt": "Los dit op om verder te gaan:",
+  "gate_question": "{a} + {b} = ?",
+  "language": "Taal",
+  "privacy_title": "Privacy",
+  "privacy_text": "Deze app verzamelt of deelt geen persoonsgegevens. Gekleurde plaatjes worden alleen op dit apparaat opgeslagen. Er is geen reclame en er is geen internetverbinding nodig.",
+  "pic_apple": "Appel",
+  "pic_banana": "Banaan",
+  "pic_ice_cream": "Ijsje",
+  "pic_pizza": "Pizza",
+  "pic_cupcake": "Cupcake",
+  "pic_carrot": "Wortel"
+}

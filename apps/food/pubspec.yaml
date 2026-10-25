@@ -1,0 +1,23 @@
+name: food
+description: Offline tap-to-fill food coloring app for kids. No ads, no tracking, no internet.
+publish_to: 'none'
+version: 1.1.0+2
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shared_preferences: ^2.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/i18n/
+    - assets/pictures/

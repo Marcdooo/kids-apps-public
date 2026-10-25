@@ -1,0 +1,19 @@
+{
+  "app_title": "Party",
+  "undo": "Rückgängig",
+  "clear": "Löschen",
+  "cancel": "Abbrechen",
+  "parent_area": "Für Erwachsene",
+  "gate_title": "Nur für Erwachsene",
+  "gate_prompt": "Löse die Aufgabe, um fortzufahren:",
+  "gate_question": "{a} + {b} = ?",
+  "language": "Sprache",
+  "privacy_title": "Datenschutz",
+  "privacy_text": "Diese App erhebt oder teilt keine personenbezogenen Daten. Ausgemalte Bilder werden nur auf diesem Gerät gespeichert. Es gibt keine Werbung, und es ist keine Internetverbindung nötig.",
+  "pic_cake": "Geburtstagstorte",
+  "pic_balloons": "Luftballons",
+  "pic_present": "Geschenk",
+  "pic_partyhat": "Partyhut",
+  "pic_sundae": "Eisbecher",
+  "pic_pinata": "Piñata"
+}

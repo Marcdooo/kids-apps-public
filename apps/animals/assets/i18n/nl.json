@@ -1,0 +1,19 @@
+{
+  "app_title": "Dieren",
+  "undo": "Ongedaan maken",
+  "clear": "Wissen",
+  "cancel": "Annuleren",
+  "parent_area": "Voor volwassenen",
+  "gate_title": "Alleen voor volwassenen",
+  "gate_prompt": "Los dit op om verder te gaan:",
+  "gate_question": "{a} + {b} = ?",
+  "language": "Taal",
+  "privacy_title": "Privacy",
+  "privacy_text": "Deze app verzamelt of deelt geen persoonsgegevens. Gekleurde plaatjes worden alleen op dit apparaat opgeslagen. Er is geen reclame en er is geen internetverbinding nodig.",
+  "pic_cat": "Kat",
+  "pic_dog": "Hond",
+  "pic_fish": "Vis",
+  "pic_bird": "Vogel",
+  "pic_turtle": "Schildpad",
+  "pic_rabbit": "Konijn"
+}

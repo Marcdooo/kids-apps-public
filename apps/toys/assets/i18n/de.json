@@ -1,0 +1,19 @@
+{
+  "app_title": "Spielzeug",
+  "undo": "Rückgängig",
+  "clear": "Löschen",
+  "cancel": "Abbrechen",
+  "parent_area": "Für Erwachsene",
+  "gate_title": "Nur für Erwachsene",
+  "gate_prompt": "Löse die Aufgabe, um fortzufahren:",
+  "gate_question": "{a} + {b} = ?",
+  "language": "Sprache",
+  "privacy_title": "Datenschutz",
+  "privacy_text": "Diese App erhebt oder teilt keine personenbezogenen Daten. Ausgemalte Bilder werden nur auf diesem Gerät gespeichert. Es gibt keine Werbung, und es ist keine Internetverbindung nötig.",
+  "pic_teddy": "Teddybär",
+  "pic_ball": "Wasserball",
+  "pic_blocks": "Bauklötze",
+  "pic_horse": "Schaukelpferd",
+  "pic_kite": "Drachen",
+  "pic_train": "Spielzeugeisenbahn"
+}

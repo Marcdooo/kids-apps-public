@@ -1,0 +1,19 @@
+{
+  "app_title": "fête",
+  "undo": "Annuler",
+  "clear": "Tout effacer",
+  "cancel": "Annuler",
+  "parent_area": "Espace parents",
+  "gate_title": "Réservé aux adultes",
+  "gate_prompt": "Résous ce calcul pour continuer :",
+  "gate_question": "{a} + {b} = ?",
+  "language": "Langue",
+  "privacy_title": "Confidentialité",
+  "privacy_text": "Cette application ne collecte et ne partage aucune donnée personnelle. Les dessins coloriés sont enregistrés uniquement sur cet appareil. Il n'y a aucune publicité et aucune connexion Internet n'est nécessaire.",
+  "pic_cake": "Gâteau d'anniversaire",
+  "pic_balloons": "Ballons",
+  "pic_present": "Cadeau",
+  "pic_partyhat": "Chapeau de fête",
+  "pic_sundae": "Coupe de glace",
+  "pic_pinata": "Piñata"
+}

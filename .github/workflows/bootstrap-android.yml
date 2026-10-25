@@ -1,0 +1,58 @@
+name: Bootstrap Android
+
+# One-time (per app): generates the android/ folder with the real package id and
+# commits it to main, so it can be reviewed and customized (signing, label).
+# Run it from the Actions tab: choose the app folder and the package prefix.
+# The package prefix cannot be changed after the app is published.
+
+on:
+  workflow_dispatch:
+    inputs:
+      app:
+        description: App folder under apps/
+        required: true
+        default: tapcolor
+      org:
+        description: Package prefix (e.g. com.yourname)
+        required: true
+        default: com.marcdooo
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Generate the Android project
+        working-directory: apps/${{ inputs.app }}
+        run: |
+          if [ -d android ]; then
+            echo "android/ already exists; refusing to overwrite it"
+            exit 1
+          fi
+          flutter create --org "${{ inputs.org }}" --project-name "${{ inputs.app }}" --platforms=android .
+          # put back anything flutter create may have touched
+          git checkout -- lib pubspec.yaml analysis_options.yaml assets tools README.md test
+          # the counter-app test flutter create adds does not fit this app
+          rm -f test/widget_test.dart
+          # standard changes: release signing hook, translated launcher name
+          python3 tools/patch_android.py
+          # launcher icons and store images (needs Pillow)
+          pip install --quiet pillow
+          python3 tools/make_store_assets.py --launcher
+
+      - name: Commit the result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "apps/${{ inputs.app }}"
+          git commit -m "Generate Android project for ${{ inputs.app }} (${{ inputs.org }})"
+          git push

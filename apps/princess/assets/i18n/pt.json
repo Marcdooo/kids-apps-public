@@ -1,0 +1,19 @@
+{
+  "app_title": "Princesas",
+  "undo": "Desfazer",
+  "clear": "Limpar",
+  "cancel": "Cancelar",
+  "parent_area": "Para adultos",
+  "gate_title": "Só para adultos",
+  "gate_prompt": "Resolva para continuar:",
+  "gate_question": "{a} + {b} = ?",
+  "language": "Idioma",
+  "privacy_title": "Privacidade",
+  "privacy_text": "Este aplicativo não coleta nem compartilha dados pessoais. Os desenhos coloridos ficam salvos somente neste dispositivo. Não há anúncios e não é preciso conexão com a internet.",
+  "pic_princess": "Princesa",
+  "pic_castle": "Castelo",
+  "pic_dragon": "Dragão",
+  "pic_crown": "Coroa",
+  "pic_knight": "Cavaleiro",
+  "pic_carriage": "Carruagem"
+}

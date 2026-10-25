@@ -1,0 +1,19 @@
+{
+  "app_title": "Comida",
+  "undo": "Anular",
+  "clear": "Limpar",
+  "cancel": "Cancelar",
+  "parent_area": "Para adultos",
+  "gate_title": "Só para adultos",
+  "gate_prompt": "Resolve isto para continuar:",
+  "gate_question": "{a} + {b} = ?",
+  "language": "Idioma",
+  "privacy_title": "Privacidade",
+  "privacy_text": "Esta aplicação não recolhe nem partilha dados pessoais. Os desenhos coloridos são guardados apenas neste dispositivo. Não há anúncios e não é preciso ligação à internet.",
+  "pic_apple": "Maçã",
+  "pic_banana": "Banana",
+  "pic_ice_cream": "Gelado",
+  "pic_pizza": "Pizza",
+  "pic_cupcake": "Cupcake",
+  "pic_carrot": "Cenoura"
+}

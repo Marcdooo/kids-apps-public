@@ -1,0 +1,19 @@
+{
+  "app_title": "zabawki",
+  "undo": "Cofnij",
+  "clear": "Wyczyść",
+  "cancel": "Anuluj",
+  "parent_area": "Strefa dla rodziców",
+  "gate_title": "Tylko dla dorosłych",
+  "gate_prompt": "Rozwiąż działanie, aby przejść dalej:",
+  "gate_question": "{a} + {b} = ?",
+  "language": "Język",
+  "privacy_title": "Prywatność",
+  "privacy_text": "Ta aplikacja nie zbiera ani nie udostępnia żadnych danych osobowych. Pokolorowane obrazki są zapisywane tylko na tym urządzeniu. Nie ma reklam i nie jest potrzebne połączenie z internetem.",
+  "pic_teddy": "Miś",
+  "pic_ball": "Piłka plażowa",
+  "pic_blocks": "Klocki",
+  "pic_horse": "Konik na biegunach",
+  "pic_kite": "Latawiec",
+  "pic_train": "Pociąg"
+}

@@ -1,0 +1,19 @@
+{
+  "app_title": "Brinquedos",
+  "undo": "Desfazer",
+  "clear": "Limpar",
+  "cancel": "Cancelar",
+  "parent_area": "Para adultos",
+  "gate_title": "Só para adultos",
+  "gate_prompt": "Resolva para continuar:",
+  "gate_question": "{a} + {b} = ?",
+  "language": "Idioma",
+  "privacy_title": "Privacidade",
+  "privacy_text": "Este aplicativo não coleta nem compartilha dados pessoais. Os desenhos coloridos ficam salvos somente neste dispositivo. Não há anúncios e não é preciso conexão com a internet.",
+  "pic_teddy": "Ursinho de pelúcia",
+  "pic_ball": "Bola de praia",
+  "pic_blocks": "Blocos de montar",
+  "pic_horse": "Cavalinho de balanço",
+  "pic_kite": "Pipa",
+  "pic_train": "Trenzinho"
+}

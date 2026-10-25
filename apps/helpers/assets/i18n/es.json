@@ -1,0 +1,19 @@
+{
+  "app_title": "Oficios",
+  "undo": "Deshacer",
+  "clear": "Borrar",
+  "cancel": "Cancelar",
+  "parent_area": "Para adultos",
+  "gate_title": "Solo para adultos",
+  "gate_prompt": "Resuelve esto para continuar:",
+  "gate_question": "{a} + {b} = ?",
+  "language": "Idioma",
+  "privacy_title": "Privacidad",
+  "privacy_text": "Esta aplicación no recopila ni comparte ningún dato personal. Los dibujos coloreados se guardan solo en este dispositivo. No hay anuncios y no se necesita conexión a internet.",
+  "pic_firefighter": "Bombero",
+  "pic_doctor": "Doctora",
+  "pic_police": "Policía",
+  "pic_chef": "Cocinero",
+  "pic_builder": "Albañil",
+  "pic_farmer": "Granjero"
+}

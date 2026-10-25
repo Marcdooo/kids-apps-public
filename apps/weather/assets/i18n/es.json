@@ -1,0 +1,19 @@
+{
+  "app_title": "Clima",
+  "undo": "Deshacer",
+  "clear": "Borrar",
+  "cancel": "Cancelar",
+  "parent_area": "Para adultos",
+  "gate_title": "Solo para adultos",
+  "gate_prompt": "Resuelve esto para continuar:",
+  "gate_question": "{a} + {b} = ?",
+  "language": "Idioma",
+  "privacy_title": "Privacidad",
+  "privacy_text": "Esta aplicación no recopila ni comparte ningún dato personal. Los dibujos coloreados se guardan solo en este dispositivo. No hay anuncios y no se necesita conexión a internet.",
+  "pic_sun": "Sol",
+  "pic_raincloud": "Nube de lluvia",
+  "pic_snowflake": "Copo de nieve",
+  "pic_autumntree": "Árbol de otoño",
+  "pic_rainbow": "Arcoíris",
+  "pic_umbrella": "Paraguas"
+}

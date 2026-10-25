@@ -1,0 +1,19 @@
+{
+  "app_title": "Dinosaurussen",
+  "undo": "Ongedaan maken",
+  "clear": "Wissen",
+  "cancel": "Annuleren",
+  "parent_area": "Voor volwassenen",
+  "gate_title": "Alleen voor volwassenen",
+  "gate_prompt": "Los dit op om verder te gaan:",
+  "gate_question": "{a} + {b} = ?",
+  "language": "Taal",
+  "privacy_title": "Privacy",
+  "privacy_text": "Deze app verzamelt of deelt geen persoonsgegevens. Gekleurde plaatjes worden alleen op dit apparaat opgeslagen. Er is geen reclame en er is geen internetverbinding nodig.",
+  "pic_trex": "T. rex",
+  "pic_triceratops": "Triceratops",
+  "pic_stegosaurus": "Stegosaurus",
+  "pic_brachiosaurus": "Brachiosaurus",
+  "pic_pterodactyl": "Pterodactylus",
+  "pic_egg": "Dino-ei"
+}

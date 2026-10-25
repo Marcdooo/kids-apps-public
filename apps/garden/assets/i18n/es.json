@@ -1,0 +1,19 @@
+{
+  "app_title": "Jardín",
+  "undo": "Deshacer",
+  "clear": "Borrar",
+  "cancel": "Cancelar",
+  "parent_area": "Para adultos",
+  "gate_title": "Solo para adultos",
+  "gate_prompt": "Resuelve esto para continuar:",
+  "gate_question": "{a} + {b} = ?",
+  "language": "Idioma",
+  "privacy_title": "Privacidad",
+  "privacy_text": "Esta aplicación no recopila ni comparte ningún dato personal. Los dibujos coloreados se guardan solo en este dispositivo. No hay anuncios y no se necesita conexión a internet.",
+  "pic_sunflower": "Girasol",
+  "pic_tulip": "Tulipán",
+  "pic_tree": "Árbol",
+  "pic_mushroom": "Seta",
+  "pic_wateringcan": "Regadera",
+  "pic_nest": "Nido"
+}

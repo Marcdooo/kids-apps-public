@@ -1,0 +1,19 @@
+{
+  "app_title": "księżniczki",
+  "undo": "Cofnij",
+  "clear": "Wyczyść",
+  "cancel": "Anuluj",
+  "parent_area": "Strefa dla rodziców",
+  "gate_title": "Tylko dla dorosłych",
+  "gate_prompt": "Rozwiąż działanie, aby przejść dalej:",
+  "gate_question": "{a} + {b} = ?",
+  "language": "Język",
+  "privacy_title": "Prywatność",
+  "privacy_text": "Ta aplikacja nie zbiera ani nie udostępnia żadnych danych osobowych. Pokolorowane obrazki są zapisywane tylko na tym urządzeniu. Nie ma reklam i nie jest potrzebne połączenie z internetem.",
+  "pic_princess": "Księżniczka",
+  "pic_castle": "Zamek",
+  "pic_dragon": "Smok",
+  "pic_crown": "Korona",
+  "pic_knight": "Rycerz",
+  "pic_carriage": "Kareta"
+}

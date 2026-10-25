@@ -1,0 +1,19 @@
+{
+  "app_title": "Meteo",
+  "undo": "Indietro",
+  "clear": "Cancella",
+  "cancel": "Annulla",
+  "parent_area": "Per i genitori",
+  "gate_title": "Solo per adulti",
+  "gate_prompt": "Risolvi questo calcolo per continuare:",
+  "gate_question": "{a} + {b} = ?",
+  "language": "Lingua",
+  "privacy_title": "Privacy",
+  "privacy_text": "Questa app non raccoglie né condivide dati personali. I disegni colorati vengono salvati solo su questo dispositivo. Non ci sono pubblicità e non serve una connessione a internet.",
+  "pic_sun": "Sole",
+  "pic_raincloud": "Nuvola di pioggia",
+  "pic_snowflake": "Fiocco di neve",
+  "pic_autumntree": "Albero d'autunno",
+  "pic_rainbow": "Arcobaleno",
+  "pic_umbrella": "Ombrello"
+}

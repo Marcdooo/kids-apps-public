@@ -1,0 +1,19 @@
+{
+  "app_title": "Noël",
+  "undo": "Annuler",
+  "clear": "Tout effacer",
+  "cancel": "Annuler",
+  "parent_area": "Espace parents",
+  "gate_title": "Réservé aux adultes",
+  "gate_prompt": "Résous ce calcul pour continuer :",
+  "gate_question": "{a} + {b} = ?",
+  "language": "Langue",
+  "privacy_title": "Confidentialité",
+  "privacy_text": "Cette application ne collecte et ne partage aucune donnée personnelle. Les dessins coloriés sont enregistrés uniquement sur cet appareil. Il n'y a aucune publicité et aucune connexion Internet n'est nécessaire.",
+  "pic_tree": "Sapin de Noël",
+  "pic_santa": "Père Noël",
+  "pic_snowman": "Bonhomme de neige",
+  "pic_gift": "Cadeau",
+  "pic_reindeer": "Renne",
+  "pic_stocking": "Chaussette de Noël"
+}

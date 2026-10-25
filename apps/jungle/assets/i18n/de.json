@@ -1,0 +1,19 @@
+{
+  "app_title": "Dschungel",
+  "undo": "Rückgängig",
+  "clear": "Löschen",
+  "cancel": "Abbrechen",
+  "parent_area": "Für Erwachsene",
+  "gate_title": "Nur für Erwachsene",
+  "gate_prompt": "Löse die Aufgabe, um fortzufahren:",
+  "gate_question": "{a} + {b} = ?",
+  "language": "Sprache",
+  "privacy_title": "Datenschutz",
+  "privacy_text": "Diese App erhebt oder teilt keine personenbezogenen Daten. Ausgemalte Bilder werden nur auf diesem Gerät gespeichert. Es gibt keine Werbung, und es ist keine Internetverbindung nötig.",
+  "pic_lion": "Löwe",
+  "pic_elephant": "Elefant",
+  "pic_giraffe": "Giraffe",
+  "pic_monkey": "Affe",
+  "pic_zebra": "Zebra",
+  "pic_hippo": "Nilpferd"
+}

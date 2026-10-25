@@ -1,0 +1,49 @@
+name: Render store pictures
+
+# Renders the scenes of an app (flutter test with RENDER_SHOTS) and publishes the PNGs
+# as a release asset (tag shots-<app>), so they can be turned into store screenshots.
+
+on:
+  workflow_dispatch:
+    inputs:
+      app:
+        description: App folder under apps/
+        required: true
+        default: fireplace
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: apps/${{ inputs.app }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - name: Render
+        env:
+          RENDER_SHOTS: "1"
+        run: flutter test test/screenshots_test.dart 2>&1 | tee render.log; exit ${PIPESTATUS[0]}
+      - name: Publish log on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="shots-${{ inputs.app }}"
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "Shots: ${{ inputs.app }}" --notes "Rendered scene pictures." --prerelease
+          gh release upload "$TAG" render.log --clobber
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="shots-${{ inputs.app }}"
+          tar -czf shots.tgz -C store raw
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "Shots: ${{ inputs.app }}" --notes "Rendered scene pictures." --prerelease
+          gh release upload "$TAG" shots.tgz --clobber

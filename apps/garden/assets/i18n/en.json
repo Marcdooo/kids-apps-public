@@ -1,0 +1,19 @@
+{
+  "app_title": "Garden",
+  "undo": "Undo",
+  "clear": "Clear",
+  "cancel": "Cancel",
+  "parent_area": "For grown-ups",
+  "gate_title": "Grown-ups only",
+  "gate_prompt": "Solve this to continue:",
+  "gate_question": "{a} + {b} = ?",
+  "language": "Language",
+  "privacy_title": "Privacy",
+  "privacy_text": "This app does not collect or share any personal data. Colored pictures are saved only on this device. There are no ads and no internet connection is needed.",
+  "pic_sunflower": "Sunflower",
+  "pic_tulip": "Tulip",
+  "pic_tree": "Tree",
+  "pic_mushroom": "Mushroom",
+  "pic_wateringcan": "Watering can",
+  "pic_nest": "Bird's nest"
+}

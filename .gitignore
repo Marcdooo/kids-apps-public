@@ -1,0 +1,14 @@
+build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+pubspec.lock
+__pycache__/
+*.pyc
+.idea/
+*.iml
+local.properties
+key.properties
+*.jks
+*.keystore

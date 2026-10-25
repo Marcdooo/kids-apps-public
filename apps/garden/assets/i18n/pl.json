@@ -1,0 +1,19 @@
+{
+  "app_title": "ogród",
+  "undo": "Cofnij",
+  "clear": "Wyczyść",
+  "cancel": "Anuluj",
+  "parent_area": "Strefa dla rodziców",
+  "gate_title": "Tylko dla dorosłych",
+  "gate_prompt": "Rozwiąż działanie, aby przejść dalej:",
+  "gate_question": "{a} + {b} = ?",
+  "language": "Język",
+  "privacy_title": "Prywatność",
+  "privacy_text": "Ta aplikacja nie zbiera ani nie udostępnia żadnych danych osobowych. Pokolorowane obrazki są zapisywane tylko na tym urządzeniu. Nie ma reklam i nie jest potrzebne połączenie z internetem.",
+  "pic_sunflower": "Słonecznik",
+  "pic_tulip": "Tulipan",
+  "pic_tree": "Drzewo",
+  "pic_mushroom": "Grzyb",
+  "pic_wateringcan": "Konewka",
+  "pic_nest": "Gniazdo"
+}

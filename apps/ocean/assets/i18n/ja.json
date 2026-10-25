@@ -1,0 +1,19 @@
+{
+  "app_title": "うみ",
+  "undo": "もどす",
+  "clear": "けす",
+  "cancel": "キャンセル",
+  "parent_area": "おとなの かたへ",
+  "gate_title": "おとな専用",
+  "gate_prompt": "つづけるには、この計算をといてください：",
+  "gate_question": "{a} + {b} = ?",
+  "language": "言語",
+  "privacy_title": "プライバシー",
+  "privacy_text": "このアプリは、個人情報を収集したり共有したりしません。ぬった絵は、この端末にだけ保存されます。広告はなく、インターネット接続も必要ありません。",
+  "pic_whale": "くじら",
+  "pic_octopus": "たこ",
+  "pic_crab": "かに",
+  "pic_starfish": "ひとで",
+  "pic_jellyfish": "くらげ",
+  "pic_submarine": "せんすいかん"
+}

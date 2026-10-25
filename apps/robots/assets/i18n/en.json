@@ -1,0 +1,19 @@
+{
+  "app_title": "Robots",
+  "undo": "Undo",
+  "clear": "Clear",
+  "cancel": "Cancel",
+  "parent_area": "For grown-ups",
+  "gate_title": "Grown-ups only",
+  "gate_prompt": "Solve this to continue:",
+  "gate_question": "{a} + {b} = ?",
+  "language": "Language",
+  "privacy_title": "Privacy",
+  "privacy_text": "This app does not collect or share any personal data. Colored pictures are saved only on this device. There are no ads and no internet connection is needed.",
+  "pic_robot": "Robot",
+  "pic_cutebot": "Little bot",
+  "pic_gears": "Gears",
+  "pic_rover": "Rover",
+  "pic_drone": "Drone",
+  "pic_arm": "Robot arm"
+}

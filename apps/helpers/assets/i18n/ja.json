@@ -1,0 +1,19 @@
+{
+  "app_title": "おしごと",
+  "undo": "もどす",
+  "clear": "けす",
+  "cancel": "キャンセル",
+  "parent_area": "おとなの かたへ",
+  "gate_title": "おとな専用",
+  "gate_prompt": "つづけるには、この計算をといてください：",
+  "gate_question": "{a} + {b} = ?",
+  "language": "言語",
+  "privacy_title": "プライバシー",
+  "privacy_text": "このアプリは、個人情報を収集したり共有したりしません。ぬった絵は、この端末にだけ保存されます。広告はなく、インターネット接続も必要ありません。",
+  "pic_firefighter": "しょうぼうし",
+  "pic_doctor": "おいしゃさん",
+  "pic_police": "おまわりさん",
+  "pic_chef": "コック",
+  "pic_builder": "だいく",
+  "pic_farmer": "のうか"
+}

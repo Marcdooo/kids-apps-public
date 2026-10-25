@@ -1,0 +1,200 @@
+name: Build APKs
+
+# Builds every app folder under apps/ on GitHub's servers, so nothing needs
+# installing on your own computer. The APK and the app bundle (AAB) for each
+# app are attached to the run (Actions tab > the run > Artifacts).
+#
+# Release signing: the four ANDROID_* secrets in the repo settings hold the upload
+# key. The build FAILS without them, because a debug-signed APK is rejected by
+# Amazon ("signed in debug mode") and by Google Play.
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**/*.md'
+  workflow_dispatch:
+    inputs:
+      apps:
+        description: "Only these app folders (space separated). Empty = every app."
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  list-apps:
+    runs-on: ubuntu-24.04
+    outputs:
+      apps: ${{ steps.find.outputs.apps }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: find
+        run: |
+          before="${{ github.event.before }}"
+          if [ -n "${{ inputs.apps }}" ]; then
+            apps=$(echo "${{ inputs.apps }}" | tr ' ' '\n' | jq -R . | jq -sc .)
+          elif [ "${{ github.event_name }}" = "push" ] && [ -n "$before" ] && ! echo "$before" | grep -qE '^0+$' && git cat-file -e "$before" 2>/dev/null; then
+            # A push only builds the apps whose folder changed (saves CI minutes).
+            apps=$(git diff --name-only "$before" "${{ github.sha }}" | grep '^apps/' | cut -d/ -f2 | sort -u | while read -r a; do [ -d "apps/$a" ] && echo "$a"; done | jq -R . | jq -sc .)
+            [ -z "$apps" ] && apps='[]'
+          else
+            apps=$(ls -d apps/*/ | xargs -n1 basename | jq -R . | jq -sc .)
+          fi
+          echo "apps=$apps" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: list-apps
+    if: needs.list-apps.outputs.apps != '[]'
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        app: ${{ fromJson(needs.list-apps.outputs.apps) }}
+    defaults:
+      run:
+        working-directory: apps/${{ matrix.app }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Flutter version
+        run: flutter --version
+
+      - name: Content checks (pictures, translations)
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 tools/validate_content.py
+
+      - name: Check the Android project exists
+        run: |
+          if [ ! -d android ]; then
+            echo "::error::apps/${{ matrix.app }}/android is missing. Run the 'Bootstrap Android' workflow for this app first."
+            exit 1
+          fi
+
+      - run: flutter pub get
+
+      - name: Analyze
+        run: |
+          set +e
+          flutter analyze --no-fatal-infos > /tmp/analyze.txt 2>&1
+          code=$?
+          cat /tmp/analyze.txt
+          if [ $code -ne 0 ]; then
+            # Repeat the problems as annotations so they show on the run page.
+            grep -E "^\s*(error|warning)" /tmp/analyze.txt | head -10 | while read -r line; do echo "::error::$line"; done
+            exit $code
+          fi
+
+      - name: Test
+        run: |
+          set +e
+          flutter test --reporter expanded > /tmp/test.txt 2>&1
+          code=$?
+          tail -n 120 /tmp/test.txt
+          if [ $code -ne 0 ]; then
+            # Show the first failure as an annotation on the run page.
+            msg=$(grep -B30 -A6 "\[E\]" /tmp/test.txt | head -n 70 | sed -e 's/%/%25/g' | sed ':a;N;$!ba;s/\n/%0A/g')
+            echo "::error::$msg"
+            exit $code
+          fi
+
+      - name: Set up release signing (only if the secrets exist)
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          if [ -n "$KEYSTORE_B64" ]; then
+            echo "$KEYSTORE_B64" | base64 -d > android/upload-keystore.jks
+            {
+              echo "storePassword=$KEYSTORE_PASSWORD"
+              echo "keyPassword=$KEY_PASSWORD"
+              echo "keyAlias=$KEY_ALIAS"
+              echo "storeFile=upload-keystore.jks"
+            } > android/key.properties
+            echo "Release signing enabled"
+          else
+            # No secrets in this repo: make a fresh release key for this build. Amazon removes
+            # the developer signature and re-signs the app with its own key, so the key only
+            # needs to be a proper release key (not the debug key).
+            PW=$(head -c 24 /dev/urandom | base64 | tr -dc 'A-Za-z0-9' | head -c 20)
+            keytool -genkeypair -v -keystore android/upload-keystore.jks -storetype JKS \
+              -alias upload -keyalg RSA -keysize 2048 -validity 10000 \
+              -storepass "$PW" -keypass "$PW" -dname "CN=Kids Apps, O=Marcdooo, C=PL" >/dev/null 2>&1
+            {
+              echo "storePassword=$PW"
+              echo "keyPassword=$PW"
+              echo "keyAlias=upload"
+              echo "storeFile=upload-keystore.jks"
+            } > android/key.properties
+            echo "Release signing enabled with a freshly generated key"
+          fi
+
+      - name: Build APK
+        run: |
+          # An app can limit the processor types in build_flags.txt (smaller APK).
+          FLAGS=""
+          if [ -f build_flags.txt ]; then FLAGS=$(cat build_flags.txt); fi
+          flutter build apk --release $FLAGS 2>&1 | tee /tmp/build.txt || {
+            grep -E "(error:|e: |FAILURE|What went wrong|Execution failed)" /tmp/build.txt | head -8 | while read -r line; do echo "::error::$line"; done
+            exit 1
+          }
+
+      - name: Build app bundle
+        run: flutter build appbundle --release
+
+      - name: Check the APK is not debug-signed
+        run: |
+          APKSIGNER=$(ls "$ANDROID_HOME"/build-tools/*/apksigner | sort -V | tail -1)
+          "$APKSIGNER" verify --print-certs build/app/outputs/flutter-apk/app-release.apk | tee certs.txt
+          if grep -qi "Android Debug" certs.txt; then
+            echo "::error::APK is signed with the debug key"
+            exit 1
+          fi
+
+      - name: Check targetSdkVersion (Google Play needs 36 or higher)
+        run: |
+          AAPT=$(ls "$ANDROID_HOME"/build-tools/*/aapt2 | sort -V | tail -1)
+          T=$("$AAPT" dump badging build/app/outputs/flutter-apk/app-release.apk | grep -o "targetSdkVersion:'[0-9]*'" | grep -o '[0-9]*')
+          echo "targetSdkVersion=$T"
+          if [ "${T:-0}" -lt 36 ]; then
+            echo "::error::targetSdkVersion $T is below 36"
+            exit 1
+          fi
+
+      # The Actions artifact storage of this repo is full, so the APK is also published as a
+      # release asset (release tag apk-<app>), which has no such quota. The artifact upload
+      # is kept but allowed to fail.
+      - name: Publish the APK as a release asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp build/app/outputs/flutter-apk/app-release.apk "${{ matrix.app }}.apk"
+          TAG="apk-${{ matrix.app }}"
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "APK: ${{ matrix.app }}" --notes "Signed release APK built from main." --prerelease
+          gh release upload "$TAG" "${{ matrix.app }}.apk" --clobber
+
+      - uses: actions/upload-artifact@v4
+        continue-on-error: true
+        with:
+          name: ${{ matrix.app }}-release
+          retention-days: 3
+          path: |
+            apps/${{ matrix.app }}/build/app/outputs/flutter-apk/app-release.apk
+            apps/${{ matrix.app }}/build/app/outputs/bundle/release/app-release.aab
+          if-no-files-found: error
